@@ -12,19 +12,28 @@ document.querySelector("input[class=agregar]").addEventListener("click", functio
         return;
     }
     nota.classList.remove("error");
+
     var tr = document.createElement("tr");
     var tdNombre = document.createElement("td");
     var txt = document.createTextNode(nombre.value);
+
     tdNombre.appendChild(txt);
     tdNombre.className = "nombre";
+
     var tdNota = document.createElement("td");
+
     txt = document.createTextNode(nota.value);
+
     tdNota.appendChild(txt);
+
     tdNota.className = "right";
+
     var tdRemove = document.createElement("td");
     var buttonRemove = document.createElement("input")
+
     buttonRemove.type = "button";
     buttonRemove.value = "Eliminar";
+
     buttonRemove.onclick = function () {
         this.parentElement.parentElement.remove();
         if (document.getElementById("listado").querySelector("tbody").querySelectorAll("tr").length == 0) {
@@ -33,11 +42,15 @@ document.querySelector("input[class=agregar]").addEventListener("click", functio
         }
         calculos();
     };
+
     tdRemove.appendChild(buttonRemove);
+
     tr.appendChild(tdNombre);
     tr.appendChild(tdNota);
     tr.appendChild(tdRemove);
+
     var tbody = document.getElementById("listado").querySelector("tbody").appendChild(tr);
+    
     document.getElementById("listado").classList.remove("hide");
     document.getElementById("calculos").classList.remove("hide");
     nota.value = "";
@@ -52,21 +65,7 @@ document.querySelector("input[class=agregar]").addEventListener("click", functio
 
 function calculos() {
 
-    var alumnosAgregados = document.getElementById("listado").querySelector("tbody").querySelectorAll("tr");
     var mejorNota = 1231312;
-    
-
-    for (let i = 0; i < alumnosAgregados.length; i++) {
-        let tds = alumnosAgregados[i].getElementsByTagName('td');
-
-        // mejor nota
-        const costosFijos = 20000
-        const carnet = 8000
-        const descuento = 0.2;
-
-
-    }
-
     // mostramos el resultado
     var result = "<div>Valor total de las materias Matriculadas + costos fijos ES: <span>(" + mejorNota + ")</span></div>";
     document.getElementById("calculos").innerHTML = result;
