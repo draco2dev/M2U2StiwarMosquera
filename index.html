@@ -14,27 +14,28 @@
     <center>
         <h1>EJERCICIO UNO</h1>
         <div class="container">
-            <form action="" id="datosMateria">
-                <div class="btn1">
-                    <input type="text" name="nombre" placeholder="Nombre del Alumno">
-                    <input type="text" name="valor" placeholder="Cantidad de Materias">
-                    <button id="boton">
-                        Agregar Materia
-                    </button>
-                    <button id="boton2">
-                        Calcular Descuento
-                    </button>
-                    <button id="botonOn"> 
-
-                    </button>
-                    
-                    
+            <form class="formulario">
+                <div>
+                    <label>Nombre del alumno</label><input type="text" name="nombre">
                 </div>
-                <div class="btn">
-                    <p id="dato">El valor Total de los costos de las materias es: </p>
-                    <p id=""> </p>
+                <div>
+                    <label>Valor de La Mateia</label><input type="number" name="nota" min="0" max="10">
+                </div>
+                <div>
+                    <br><input type="submit" value="Agregar" class="agregar">
                 </div>
             </form>
+             
+            <table id="listado" class='hide'>
+                <thead>
+                    <th>Alumno</th>
+                    <th>Nota</th>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+             
+            <div id="calculos" class='hide'></div>
 
         </div>
     </center>

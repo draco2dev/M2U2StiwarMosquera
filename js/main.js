@@ -1,40 +1,74 @@
-const 
-    a = document.getElementById('numero1')
-    b = document.getElementById('numero2')
-    c = document.getElementById('numero3')
-    d = document.getElementById('numero4')
-    datoBoton = document.getElementById('boton')
-    datoMayor = document.getElementById('numeroMayor')
-    datoMenor = document.getElementById('numeroMenor')
-
-
-datoBoton.addEventListener('click', ()=>{
-    if((a.value == b.value) || (a.value == c.value) || (a.value == d.value)){
-        alert('No pude haber numeros Repetidos')
-    }else if((b.value == c.value) || (b.value == d.value)){
-        alert('No pude haber numeros Repetidos')
-    }else if((c.value == d.value)){
-        alert('No pude haber numeros Repetidos')
-    }else{
-        let Mayor = Math.max(a.value,b.value,c.value,d.value)
-        if(Mayor == a.value){
-            datoMayor.innerHTML = 'El dato [A] Mayor es : ' + Mayor
-        }else if(Mayor == b.value){
-            datoMayor.innerHTML = 'El dato [B] Mayor es : ' + Mayor
-        }else if(Mayor == c.value){
-            datoMayor.innerHTML = 'El dato [C] Mayor es : ' + Mayor
-        }else if(Mayor == d.value){
-            datoMayor.innerHTML = 'El dato [D] Mayor es : ' + Mayor
-        }
-        let Menor = Math.min(a.value,b.value,c.value,d.value)
-        if(Menor == a.value){
-            datoMenor .innerHTML = 'El dato [A] Menor es : ' + Menor
-        }else if(Menor == b.value){
-            datoMenor .innerHTML = 'El dato [B] Menor es : ' + Menor
-        }else if(Menor == c.value){
-            datoMenor .innerHTML = 'El dato [C] Menor es : ' + Menor
-        }else if(Menor == d.value){
-            datoMenor .innerHTML = 'El dato [D] Menor es : ' + Menor
-        }
+document.querySelector("input[class=agregar]").addEventListener("click", function (e) {
+    e.preventDefault();
+    var nombre = document.querySelector("input[name=nombre]");
+    var nota = document.querySelector("input[name=nota]");
+    if (!nombre.value) {
+        nombre.classList.add("error");
+        return;
     }
-})
+    nombre.classList.remove("error");
+    if (isNaN(parseInt(nota.value)) || (parseInt(nota.value) < 0 && parseInt(nota.value) > 10)) {
+        nota.classList.add("error");
+        return;
+    }
+    nota.classList.remove("error");
+    var tr = document.createElement("tr");
+    var tdNombre = document.createElement("td");
+    var txt = document.createTextNode(nombre.value);
+    tdNombre.appendChild(txt);
+    tdNombre.className = "nombre";
+    var tdNota = document.createElement("td");
+    txt = document.createTextNode(nota.value);
+    tdNota.appendChild(txt);
+    tdNota.className = "right";
+    var tdRemove = document.createElement("td");
+    var buttonRemove = document.createElement("input")
+    buttonRemove.type = "button";
+    buttonRemove.value = "Eliminar";
+    buttonRemove.onclick = function () {
+        this.parentElement.parentElement.remove();
+        if (document.getElementById("listado").querySelector("tbody").querySelectorAll("tr").length == 0) {
+            document.getElementById("listado").classList.add("hide");
+            document.getElementById("calculos").classList.add("hide");
+        }
+        calculos();
+    };
+    tdRemove.appendChild(buttonRemove);
+    tr.appendChild(tdNombre);
+    tr.appendChild(tdNota);
+    tr.appendChild(tdRemove);
+    var tbody = document.getElementById("listado").querySelector("tbody").appendChild(tr);
+    document.getElementById("listado").classList.remove("hide");
+    document.getElementById("calculos").classList.remove("hide");
+    nota.value = "";
+    nombre.value = "";
+    nombre.focus();
+
+
+    calculos();
+});
+
+
+
+function calculos() {
+
+    var alumnosAgregados = document.getElementById("listado").querySelector("tbody").querySelectorAll("tr");
+    var mejorNota = 1231312;
+    
+
+    for (let i = 0; i < alumnosAgregados.length; i++) {
+        let tds = alumnosAgregados[i].getElementsByTagName('td');
+
+        // mejor nota
+        const costosFijos = 20000
+        const carnet = 8000
+        const descuento = 0.2;
+
+
+    }
+
+    // mostramos el resultado
+    var result = "<div>Valor total de las materias Matriculadas + costos fijos ES: <span>(" + mejorNota + ")</span></div>";
+    document.getElementById("calculos").innerHTML = result;
+
+}
