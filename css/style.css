@@ -17,6 +17,11 @@
         border-color:green;
         color:white;
     }
+    .mostrar{
+        background-color:rgb(240, 16, 16);
+        border-color:rgb(240, 16, 16);
+        color:black;
+    }
  
     #listado, #calculos {
         border:1px solid #eee;

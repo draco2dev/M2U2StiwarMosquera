@@ -11,12 +11,20 @@
 </head>
 
 <body>
+    <h1>EJERCICIO UNO</h1>
+    <p>Crear un algoritmo que le permita al usuario ingresar:</p>
+    <p>a. Nombre de un estudiante,<br>
+        b. Cantidad de materias o asignaturas a matricular.<br>
+        c. Valor de cada materia o asignatura,<br>
+        d. Valor de la papelería: que tiene un costo fijo de $20.000 y el carné con valor de $8.000.<br>
+        e. Descuento del 20% sobre el costo de las materias.<br>
+        Por medio del algoritmo imprimir el valor total de las materias que matriculó el estudiante con el
+        descuento del 20% más los costos fijos.</p>
     <center>
-        <h1>EJERCICIO UNO</h1>
         <div class="container">
             <form class="formulario">
                 <div>
-                    <label>Nombre del alumno</label><input type="text" name="nombre">
+                    <label>Nombre de la Materia</label><input type="text" name="nombre">
                 </div>
                 <div>
                     <label>Valor de La Mateia</label><input type="number" name="nota" min="0" max="10">
@@ -24,12 +32,18 @@
                 <div>
                     <br><input type="submit" value="Agregar" class="agregar">
                 </div>
+
+                
             </form>
+
+            <div>
+                <br><input type="submit" value="Calcular Costos" class="mostrar">
+            </div>
              
             <table id="listado" class='hide'>
                 <thead>
-                    <th>Alumno</th>
-                    <th>Nota</th>
+                    <th>Materia</th>
+                    <th>Valor</th>
                 </thead>
                 <tbody>
                 </tbody>

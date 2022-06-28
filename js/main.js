@@ -1,16 +1,20 @@
+
+var nombre = document.querySelector("input[name=nombre]");
+var nota = document.querySelector("input[name=nota]");
+
 document.querySelector("input[class=agregar]").addEventListener("click", function (e) {
     e.preventDefault();
-    var nombre = document.querySelector("input[name=nombre]");
-    var nota = document.querySelector("input[name=nota]");
+
     if (!nombre.value) {
         nombre.classList.add("error");
         return;
     }
     nombre.classList.remove("error");
-    if (isNaN(parseInt(nota.value)) || (parseInt(nota.value) < 0 && parseInt(nota.value) > 10)) {
+    if (isNaN(parseInt(nota.value)) || (parseInt(nota.value) < 0 && parseInt(nota.value) > 100000000000000000000000)) {
         nota.classList.add("error");
         return;
     }
+
     nota.classList.remove("error");
 
     var tr = document.createElement("tr");
@@ -50,24 +54,51 @@ document.querySelector("input[class=agregar]").addEventListener("click", functio
     tr.appendChild(tdRemove);
 
     var tbody = document.getElementById("listado").querySelector("tbody").appendChild(tr);
-    
+
     document.getElementById("listado").classList.remove("hide");
     document.getElementById("calculos").classList.remove("hide");
+
     nota.value = "";
     nombre.value = "";
     nombre.focus();
 
 
-    calculos();
+
+    
+});
+
+document.querySelector("input[class=mostrar]").addEventListener("click", function (e) {
+   calculos();
 });
 
 
 
 function calculos() {
+    var alumnosAgregados = document.getElementById("listado").querySelector("tbody").querySelectorAll("tr");
+    var totalMateria = [];
+    const costosfijos = 20000
+    const carnet = 8000
+    const descuento = 0.2;
+  
+    var sumaTotal = 0
 
-    var mejorNota = 1231312;
-    // mostramos el resultado
-    var result = "<div>Valor total de las materias Matriculadas + costos fijos ES: <span>(" + mejorNota + ")</span></div>";
+    for (let i = 0; i < alumnosAgregados.length; i++) {
+        let totalMateria = alumnosAgregados[i].getElementsByTagName('td');
+        totalMateria[i]+= sumaTotal;
+        sumaTotal += parseFloat(totalMateria[1].innerHTML);
+    }
+
+    var totalSuma = costosfijos + carnet + sumaTotal
+    var descuentoTotal = descuento * totalSuma
+
+    var totalValores = totalSuma - descuentoTotal;
+
+
+
+    var result = "<div>Numero de Materias: <span>(" + alumnosAgregados.length + ")</span></div>";
+    result += "<div>Valor total de las materias Matriculadas + costos fijos ES: <span>" + (totalValores).toFixed(1) + "</span></div>";
+
+
     document.getElementById("calculos").innerHTML = result;
 
 }
