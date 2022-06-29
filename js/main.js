@@ -1,6 +1,6 @@
 
 var nombre = document.querySelector("input[name=nombre]");
-var nota = document.querySelector("input[name=nota]");
+var materia = document.querySelector("input[name=materia]");
 
 document.querySelector("input[class=agregar]").addEventListener("click", function (e) {
     e.preventDefault();
@@ -10,12 +10,12 @@ document.querySelector("input[class=agregar]").addEventListener("click", functio
         return;
     }
     nombre.classList.remove("error");
-    if (isNaN(parseInt(nota.value)) || (parseInt(nota.value) < 0 && parseInt(nota.value) > 100000000000000000000000)) {
-        nota.classList.add("error");
+    if (isNaN(parseInt(materia.value)) || (parseInt(materia.value) < 0 && parseInt(materia.value) > 100000000000000000000000)) {
+        materia.classList.add("error");
         return;
     }
 
-    nota.classList.remove("error");
+    materia.classList.remove("error");
 
     var tr = document.createElement("tr");
     var tdNombre = document.createElement("td");
@@ -24,13 +24,13 @@ document.querySelector("input[class=agregar]").addEventListener("click", functio
     tdNombre.appendChild(txt);
     tdNombre.className = "nombre";
 
-    var tdNota = document.createElement("td");
+    var tdMateria = document.createElement("td");
 
-    txt = document.createTextNode(nota.value);
+    txt = document.createTextNode(materia.value);
 
-    tdNota.appendChild(txt);
+    tdMateria.appendChild(txt);
 
-    tdNota.className = "right";
+    tdMateria.className = "right";
 
     var tdRemove = document.createElement("td");
     var buttonRemove = document.createElement("input")
@@ -50,7 +50,7 @@ document.querySelector("input[class=agregar]").addEventListener("click", functio
     tdRemove.appendChild(buttonRemove);
 
     tr.appendChild(tdNombre);
-    tr.appendChild(tdNota);
+    tr.appendChild(tdMateria);
     tr.appendChild(tdRemove);
 
     var tbody = document.getElementById("listado").querySelector("tbody").appendChild(tr);
@@ -58,7 +58,7 @@ document.querySelector("input[class=agregar]").addEventListener("click", functio
     document.getElementById("listado").classList.remove("hide");
     document.getElementById("calculos").classList.remove("hide");
 
-    nota.value = "";
+    materia.value = "";
     nombre.value = "";
     nombre.focus();
 
